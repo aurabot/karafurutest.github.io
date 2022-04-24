@@ -226,7 +226,7 @@ $(document).ready(function () {
     }
     console.log(t);
     $("#pricex").text(t);
-    var total = (t * 0.09).toFixed(2);
+    var total = (t * 0.50).toFixed(2);
     $("#price").text(total);
   });
 
@@ -238,13 +238,13 @@ $(document).ready(function () {
     }
     console.log(t);
     $("#pricex").text(t);
-    var total = (t * 0.09).toFixed(2);
+    var total = (t * 0.50).toFixed(2);
     $("#price").text(total);
   });
 
   $("#ape-max").click(function () {
     $(".eth_input").val($(".eth_input").attr("max"));
     $("#pricex").text($(".eth_input").attr("max"));
-    $("#price").text(($(".eth_input").attr("max") * 0.09).toFixed(2));
+    $("#price").text(($(".eth_input").attr("max") * 0.50).toFixed(2));
   });
 });
