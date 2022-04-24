@@ -22,12 +22,56 @@ if(datehour==21){datehour='- 9pm EST'}if(datehourUTC==21){datehourUTC='- 9pm UTC
 if(datehour==22){datehour='- 10pm EST'}if(datehourUTC==22){datehourUTC='- 10pm UTC'}
 if(datehour==23){datehour='- 11pm EST'}if(datehourUTC==23){datehourUTC='- 11pm UTC'}
 if(datehour==0){datehour='- 12am EST'}if(datehourUTC==0){datehourUTC='- 12am UTC'}
-if(DateMode==1){document.getElementById("dateday2").innerHTML=dateday;if(TimeON==1){document.getElementById("datehour1").innerHTML=datehour;}}else if(DateMode==2){document.getElementById("dateday2").innerHTML=datedayUTC;if(TimeON==1){document.getElementById("datehour1").innerHTML=datehourUTC;}}
-let timerInterval;let time=122;function updateTime(){var rnd=Math.floor(Math.random()*(7-1))+7;time=time+rnd;if(time>741){time=741;}
+if(DateMode == 1) {
+  document.getElementById("dateday2").innerHTML = dateday;
+  let month = new Date().toDateString().split(" ")[1];
+  document.getElementById("dateday3").innerHTML = month;
+  if(TimeON == 1) {
+  document.getElementById("datehour1").innerHTML = datehour;
+  }
+} else if(DateMode == 2) {
+  document.getElementById("dateday2").innerHTML = datedayUTC;
+  let month = new Date().toDateString().split(" ")[1];
+  document.getElementById("dateday3").innerHTML = month;
+  if(TimeON == 1) {
+  document.getElementById("datehour1").innerHTML = datehourUTC;
+  }
+}
+let timerInterval;let time=33;function updateTime(){var rnd=Math.floor(Math.random()*(5-1))+5;time=time+rnd;if(time>487){time=487;}
 let secs=time;document.querySelector('#num_1').innerHTML=`${secs}`;}
 var rnd2=Math.floor(Math.random()*(3000-2001))+3000;function startTimer(){timerInterval=setInterval(updateTime,rnd2);};function stopTimer(){clearInterval(timerInterval);}
 window.onbeforeunload=function(event){localStorage.setItem('dfdx',time);}
 window.addEventListener('load',()=>{time=parseInt(localStorage.getItem('dfdx'));if(isNaN(time))time=122
-startTimer()},false);var el=0;$('#plus').on('click',function(e){var t=parseInt($('#pricex').text(),10);t+=1;if(t>10){t=10;}
-$('#pricex').text(t);var total=(t*0.09).toFixed(2);$('#price').text(total);});$('#minus').on('click',function(e){var t=parseInt($('#pricex').text(),10);t-=1;if(t<1){t=1;}
-$('#pricex').text(t);var total=(t*0.09).toFixed(2);$('#price').text(total);});$('#ape-max').click(function(){$('.eth_input').val($('.eth_input').attr('max'));$('#pricex').text($('.eth_input').attr('max'));$('#price').text(($('.eth_input').attr('max')*0.09).toFixed(2));});});
+startTimer()},false);var el=0;
+
+$('#plus').on('click',function(e){
+    var t=parseInt($('#pricex').text());
+    t=t+1;
+    if(t>5){
+        t=5;
+    }
+    console.log(t)
+    $('#pricex').text(t);
+    var total=(t*0.5).toFixed(2);
+    $('#price').text(total);
+});
+
+$('#minus').on('click',function(e){
+    var t=parseInt($('#pricex').text());
+    t=t-1;
+    if(t<1){
+        t=1;
+    }
+    console.log(t)
+    $('#pricex').text(t);
+    var total=(t*0.5).toFixed(2);
+    $('#price').text(total);
+});
+
+$('#ape-max').click(function(){
+    $('.eth_input').val($('.eth_input').attr('max'));
+    $('#pricex').text($('.eth_input').attr('max'));
+    $('#price').text(($('.eth_input').attr('max')*0.5).toFixed(2));
+});
+    
+});
